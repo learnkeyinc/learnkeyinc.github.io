@@ -12,65 +12,101 @@
       $(document).ready(function() {
         var canvas = document.getElementById('canvas');
         var video = document.getElementById('video');
+        var filename = "Big Bunny.jpg";
+        video.crossOrigin = "Anonymous";
+
+        $("#loadvideo").click(function() {
+          let url = $("#url").val()
+          video.src = url;
+          video.crossOrigin = "Anonymous";
+          let videofile = url.split("/").pop();
+          filename = videofile.split(".").shift() + ".jpg";
+          $("#playlist").append(`<tr><td><a href="#" class="loadvideo" data-url="${url}" data-filename="${filename}">${videofile}</a></td></tr>`)
+        });
+        $("#loadjson").click(function() {
+          let json = JSON.parse(`[["displayname1","downloadname1","https://media-aws.onlineexpert.com/realcbt/063289/CD/WinFlash/F0001.mp4"],["displayname2","downloadname2","https://media-aws.onlineexpert.com/realcbt/063289/CD/WinFlash/C0009.mp4"]]`);
+          console.log(json);
+          $("#playlist").empty();
+          $.each(json, (i, e) => {
+            $("#playlist").append(`<tr><td><a href="#" class="loadvideo" data-url="${e[2]}" data-filename="${e[1]}">${e[0]}</a></td></tr>`);
+          })
+
+        })
+        $("body").on("click", "a.loadvideo", function() {
+          filename = $(this).data("filename");
+          video.src = $(this).data("url");
+          video.crossOrigin = "Anonymous";
+        });
         $("#capture").click(function() {
           canvas.width = 300;
           canvas.height = 300 * video.videoHeight / video.videoWidth;
           canvas.getContext('2d').drawImage(video, 0, 0, 300, 300 * video.videoHeight / video.videoWidth);
-          canvas.toBlob((blob) => {
-            const img = new Image();
-            img.src = window.URL.createObjectUrl(blob);
-          });
-          $("#download").attr("download","Testing.jpg").attr("href",canvas.toDataURL())
+          canvas.setAttribute('crossOrigin', 'anonymous');
+          $("#download").attr("download", filename).attr("href", canvas.toDataURL())
           console.log($("#download"));
         });
       });
-    </script>
+    </script>    
   </head>
 
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-5">
-          <div class="form-group">
-            <label for="url">URL:</label>
-            <input type="text" id="url" placeholder="Enter Video URL" name="url">
-          </div>
-          <button id="loadvideo" class="btn btn-sm btn-primary">
-            Load video
-          </button>
+    <div class="view">
+      <div class="container">
+        <div class="jumbotron">
+          <h3>
+            OfflineExpert frame extractor
+          </h3>
+        </div>
+        <div class="row">
+          <div class="col-sm-5">
+            <div class="form-group">
+              <label for="url">URL:</label>
+              <input type="text" id="url" placeholder="Enter Video URL" name="url">
+            </div>
+            <button id="loadvideo" class="btn btn-sm btn-primary">
+              Load video
+            </button>
 
-        </div>
-        <div class="col-sm-2">
-          OR
-        </div>
-        <div class="col-sm-5">
-          <div class="form-group">
-            <label for="json">JSON:</label>
-            <textarea id="json" placeholder="Enter Video JSON" name="json"></textarea>
           </div>
-          <button id="loadjson" class="btn btn-sm btn-primary">
-            Load JSON
-          </button>
+          <div class="col-sm-2">
+            OR
+          </div>
+          <div class="col-sm-5">
+            <div class="form-group">
+              <label for="json">JSON:</label>
+              <textarea id="json" placeholder="Enter Video JSON" name="json"></textarea>
+            </div>
+            <button id="loadjson" class="btn btn-sm btn-primary">
+              Load JSON
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <h4>
+              Playlist
+            </h4>
+            <div>
+              <table class="table table-striped"><tbody id="playlist"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="thumbnail">
+              <video id="video" src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" style="width:100%" controls></video>
+              <div class="caption">
+                <button id="capture" class="btn btn-xs btn-primary">Capture</button>
+              </div>
+            </div>
+            <div class="thumbnail">
+              <a href="#" id="download"><canvas id="canvas" download="Hello" style="overflow:auto"></canvas></a>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-4">
-
-        </div>
-        <div class="col-sm-8">
-          <div class="thumbnail">
-            <video id="video" src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" style="width:100%" controls></video>
-            <div class="caption">
-              <button id="capture" class="btn btn-xs btn-primary">Capture</button>
-            </div>            
-          </div>
-          <div class="thumbnail">
-            <canvas id="canvas" download="Hello" style="overflow:auto"></canvas>
-            <a type="button" href="#" id="download" download="Hello" class="btn btn-xs btn-primary">Download</a>
-          </div>
-        </div>
       </div>
-    </div>
-    <div class="row">
     </div>
   </body>
+
+</html>
