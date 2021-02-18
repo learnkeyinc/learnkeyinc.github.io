@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        var canvas = document.getElementById('canvas');
+        var video = document.getElementById('video');
+        $("#capture").click(function() {
+          canvas.width = 300;
+          canvas.height = 300 * video.videoHeight / video.videoWidth;
+          canvas.getContext('2d').drawImage(video, 0, 0, 300, 300 * video.videoHeight / video.videoWidth);
+          canvas.toBlob((blob) => {
+            const img = new Image();
+            img.src = window.URL.createObjectUrl(blob);
+          });
+          $("#download").attr("download","Testing.jpg").attr("href",canvas.toDataURL())
+          console.log($("#download"));
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="form-group">
+            <label for="url">URL:</label>
+            <input type="text" id="url" placeholder="Enter Video URL" name="url">
+          </div>
+          <button id="loadvideo" class="btn btn-sm btn-primary">
+            Load video
+          </button>
+
+        </div>
+        <div class="col-sm-2">
+          OR
+        </div>
+        <div class="col-sm-5">
+          <div class="form-group">
+            <label for="json">JSON:</label>
+            <textarea id="json" placeholder="Enter Video JSON" name="json"></textarea>
+          </div>
+          <button id="loadjson" class="btn btn-sm btn-primary">
+            Load JSON
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+
+        </div>
+        <div class="col-sm-8">
+          <div class="thumbnail">
+            <video id="video" src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" style="width:100%" controls></video>
+            <div class="caption">
+              <button id="capture" class="btn btn-xs btn-primary">Capture</button>
+            </div>            
+          </div>
+          <div class="thumbnail">
+            <canvas id="canvas" download="Hello" style="overflow:auto"></canvas>
+            <a type="button" href="#" id="download" download="Hello" class="btn btn-xs btn-primary">Download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    </div>
+  </body>
