@@ -13,12 +13,11 @@
         var canvas = document.getElementById('canvas');
         var video = document.getElementById('video');
         var filename = "Big Bunny.jpg";
+        video.src = "https://www.w3schools.com/html/mov_bbb.mp4";
         video.crossOrigin = "Anonymous";
 
         $("#loadvideo").click(function() {
           let url = $("#url").val()
-          video.src = url;
-          video.crossOrigin = "Anonymous";
           let videofile = url.split("/").pop();
           filename = videofile.split(".").shift() + ".jpg";
           $("#playlist").append(`<tr><td><a href="#" class="loadvideo" data-url="${url}" data-filename="${filename}">${videofile}</a></td></tr>`)
@@ -81,7 +80,8 @@
 
           </div>
           <div class="col-sm-2">
-            OR
+            Download:<br>
+            <a href="#" id="download"><canvas id="canvas" download="Hello" style="width:100%;overflow:auto"></canvas></a>
           </div>
           <div class="col-sm-5">
             <div class="form-group">
@@ -106,13 +106,10 @@
           </div>
           <div class="col-sm-8">
             <div class="thumbnail">
-              <video id="video" src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" style="width:100%" controls></video>
+              <video id="video" src="" type="video/mp4" style="width:100%" controls></video>
               <div class="caption">
                 <button id="capture" class="btn btn-xs btn-primary">Capture</button>
               </div>
-            </div>
-            <div class="thumbnail">
-              <a href="#" id="download"><canvas id="canvas" download="Hello" style="overflow:auto"></canvas></a>
             </div>
           </div>
         </div>
