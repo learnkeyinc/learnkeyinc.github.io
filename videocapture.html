@@ -39,9 +39,9 @@
           video.crossOrigin = "Anonymous";
         });
         $("#capture").click(function() {
-          canvas.width = 300;
-          canvas.height = 300 * video.videoHeight / video.videoWidth;
-          canvas.getContext('2d').drawImage(video, 0, 0, 300, 300 * video.videoHeight / video.videoWidth);
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
           canvas.setAttribute('crossOrigin', 'anonymous');
           $("#download").attr("download", filename).attr("href", canvas.toDataURL())
           console.log($("#download"));
