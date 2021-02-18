@@ -23,7 +23,7 @@
           filename = videofile.split(".").shift() + ".jpg";
           $("#playlist").append(`<tr><td><a href="#" class="loadvideo" data-url="${url}" data-filename="${filename}">${videofile}</a></td></tr>`)
         });
-        
+
         $("#loadjson").click(function() {
           let json = JSON.parse($("#json").val());
           console.log(json);
@@ -47,7 +47,18 @@
           console.log($("#download"));
         });
       });
-    </script>    
+
+    </script>
+    <style>
+      .view {
+        background-color: green;
+      }
+
+      .container {
+        background-color: white;
+      }
+
+    </style>
   </head>
 
   <body>
@@ -62,7 +73,7 @@
           <div class="col-sm-5">
             <div class="form-group">
               <label for="url">URL:</label>
-              <input type="text" id="url" placeholder="Enter Video URL" name="url">
+              <input type="text" class="form-control" id="url" placeholder="Enter Video URL" name="url">
             </div>
             <button id="loadvideo" class="btn btn-sm btn-primary">
               Load video
@@ -75,7 +86,7 @@
           <div class="col-sm-5">
             <div class="form-group">
               <label for="json">JSON:</label>
-              <textarea id="json" placeholder="Enter Video JSON" name="json"></textarea>
+              <textarea id="json" class="form-control" placeholder="Enter Video JSON" name="json"></textarea>
             </div>
             <button id="loadjson" class="btn btn-sm btn-primary">
               Load JSON
@@ -88,7 +99,8 @@
               Playlist
             </h4>
             <div>
-              <table class="table table-striped"><tbody id="playlist"></tbody>
+              <table class="table table-striped">
+                <tbody id="playlist"></tbody>
               </table>
             </div>
           </div>
