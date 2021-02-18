@@ -2,7 +2,7 @@
 <html lang="en">
 
   <head>
-    <title>Bootstrap Example</title>
+    <title>OfflineExpert frame extractor</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -23,8 +23,9 @@
           filename = videofile.split(".").shift() + ".jpg";
           $("#playlist").append(`<tr><td><a href="#" class="loadvideo" data-url="${url}" data-filename="${filename}">${videofile}</a></td></tr>`)
         });
+        
         $("#loadjson").click(function() {
-          let json = JSON.parse(`[["displayname1","downloadname1","https://media-aws.onlineexpert.com/realcbt/063289/CD/WinFlash/F0001.mp4"],["displayname2","downloadname2","https://media-aws.onlineexpert.com/realcbt/063289/CD/WinFlash/C0009.mp4"]]`);
+          let json = JSON.parse($("#json").val());
           console.log(json);
           $("#playlist").empty();
           $.each(json, (i, e) => {
