@@ -13,8 +13,6 @@
         var canvas = document.getElementById('canvas');
         var video = document.getElementById('video');
         var filename = "OfflineExpert Demo.jpg";
-        video.src = "https://media-aws.onlineexpert.com/subscription/Demo/OfflineExpert_Demo.mp4";
-        video.crossOrigin = "Anonymous";
 
         $("#loadvideo").click(function() {
           let url = $("#url").val()
@@ -30,13 +28,19 @@
           $.each(json, (i, e) => {
             $("#playlist").append(`<tr><td><a href="#" class="loadvideo" data-url="${e[2]}" data-filename="${e[1]}">${e[0]}</a></td></tr>`);
           })
-
         })
+        
+        $("#clearplaylist").click(function() {
+        	$("#playlist").empty();
+        })
+        
         $("body").on("click", "a.loadvideo", function() {
           filename = $(this).data("filename");
           video.src = $(this).data("url");
           video.crossOrigin = "Anonymous";
+          $("#filename").html(`<a href="${$(this).data("url")}">${this.innerHTML}</a>`);
         });
+        
         $("#capture").click(function() {
           canvas.width = video.videoWidth;
           canvas.height = video.videoHeight;
@@ -80,8 +84,8 @@
 
           </div>
           <div class="col-sm-2">
-            Download:<br>
-            <a href="#" id="download"><canvas id="canvas" download="Hello" style="width:100%;overflow:auto"></canvas></a>
+            <a href="#" id="download">Download:<br>
+            <canvas id="canvas" download="Hello" style="width:100%;overflow:auto"></canvas></a>
           </div>
           <div class="col-sm-5">
             <div class="form-group">
@@ -96,11 +100,13 @@
         <div class="row">
           <div class="col-sm-4">
             <h4>
-              Playlist
+              Playlist <i id="clearplaylist" class="pull-right glyphicon glyphicon-remove-circle"></i>
             </h4>
             <div>
               <table class="table table-striped">
-                <tbody id="playlist"></tbody>
+                <tbody id="playlist">
+                  <tr><td><a href="#" class="loadvideo" data-url="https://media-aws.onlineexpert.com/subscription/Demo/OfflineExpert_Demo.mp4" data-filename="OfflineExpert Demo.jpg">OfflineExpert Demo</a></td></tr>
+                </tbody>                
               </table>
             </div>
           </div>
@@ -109,6 +115,7 @@
               <video id="video" src="" type="video/mp4" style="width:100%" controls></video>
               <div class="caption">
                 <button id="capture" class="btn btn-xs btn-primary">Capture</button>
+                <span id="filename"></span>
               </div>
             </div>
           </div>
