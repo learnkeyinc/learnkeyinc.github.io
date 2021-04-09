@@ -47,6 +47,7 @@ async function getpw(secret) {
       url = c.getResponseHeader("x-final-url"); 
     }
   );
+  console.log(postResult);
   return url;
 }
 
