@@ -1,6 +1,6 @@
 let firstName,o365email,o365pw,voipextension,voippw,voicemailpw,adobeemail,adobepw
 $("#submitinclusions").click(function() {
-  console.log("Hi");
+  let included = [];
   $("#inclusions input:checkbox").each(function() {
     let c = $(this);
     if (c.is(":checked")) {
