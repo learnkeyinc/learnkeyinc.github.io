@@ -11,8 +11,8 @@
     <script defer>
       let firstName,o365email,o365pw,voipextension,voippw,voicemailpw,adobeemail,adobepw
       $("#submitinclusions").click(function() {
+        console.log("Hi");
         $("#inclusions input:checkbox").each(function() {
-          console.log($(this));
           let c = $(this);
           if (c.is(":checked")) {
             included.push(c.attr("id"));
