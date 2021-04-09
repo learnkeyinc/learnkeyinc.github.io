@@ -18,11 +18,11 @@ $("#submitinclusions").click(function() {
 });
 
 $("#submitinformation").click(function() {
-  $("#requiredinfo input").each(async function() {
+  $("#requiredinfo input").each(function() {
     let id = $(this).attr("id");
     let value = $(this).val();
     if (id.substr(-2) == "pw") {
-      value = await getpw(value);
+      value = getpw(value);
     }
     values[id] = value;
   });
@@ -45,6 +45,7 @@ async function getpw(secret) {
     }, 
     function (a,b,c) { 
       url = c.getResponseHeader("x-final-url"); 
+      console.log("url:",url);
     }
   ).promise();
   console.log(postResult,url);
