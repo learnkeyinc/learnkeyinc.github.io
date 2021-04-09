@@ -1,7 +1,7 @@
-let values = {};
+let values = {}, included = [];
 
 $("#submitinclusions").click(function() {
-  let included = [];
+  included = [];
   $("#inclusions input:checkbox").each(function() {
     let c = $(this);
     if (c.is(":checked")) {
@@ -29,6 +29,12 @@ $("#submitinformation").click(function() {
   });
   $.when(populateValues).then(function() {
     console.log(values);
+    let outputText = `<table width="100%" align="center" style="vertical-align:top; text-align:left; font-family:Calibri, sans-serif; font-size:11pt;"><tr>${getTemplate("intro","text")}</tr><tr>${getTemplate("warning","text")}</tr><tr><td colspan="2"><table width="100%" align="center" style="text-align:left;"><thead><td>Service</td><td>Description</td><td>Account URL</td><td>User name</td><td>Temporary password</td></thead>`;
+    $.each(included, (i,v) => {
+      outputText += `<tr>${getTemplate(v,"text")}</tr>`
+    });
+    outputText += `</table></td></tr><tr>${getTemplate("ending","text")}</tr></table>`;
+    $("#output").empty().html(outputText);
   });
 });
 
