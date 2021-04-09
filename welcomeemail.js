@@ -37,8 +37,7 @@ async function getpw(secret) {
   let expirationViews = $("#expirationviews").val();
   let expirationHours = $("#expirationhours").val();
   let url;
-  let postResult = await Promise.resolve(
-    $.post("https://cors.bridged.cc/https://quickforget.com/secret/submit/", 
+  let postResult = await $.post("https://cors.bridged.cc/https://quickforget.com/secret/submit/", 
       { 
         secret: secret, 
         expire_after_views: expirationViews, 
@@ -47,9 +46,9 @@ async function getpw(secret) {
       function (a,b,c) { 
         url = c.getResponseHeader("x-final-url"); 
       }
-    )
+    ).promise();
   );
-  console.log(postResult);
+  console.log(postResult,url);
   return url;
 }
 
