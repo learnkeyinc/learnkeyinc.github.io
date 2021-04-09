@@ -76,6 +76,10 @@ function getTemplate(key,subkey) {
       required: [["Voicemail password","voicemailpw"]],
       text: `<td>Desk phone</td><td>Your desk phone connects to the company VoIP system for outbound and inbound calls. You can also use it to check your voicemail.</td><td>Varies</td><td>N/A</td><td><a href="${values.voicemailpw}">Voicemail passcode</a></td>`
     },
+    bria: {
+      required: [],
+      text: `<td>Bria softphone</td><td>Bria is a software that emulates a desk phone. We will collaborate with you to help you set up this software.</td><td></td><td></td><td></td>`
+    },
     creativecloud: {
       required: [["Adobe email address","adobeemail"],["Adobe password","adobepw"]],
       text: `<td>Adobe Creative Cloud for Teams</td><td>Acrobat, Photoshop, Lightroom, InDesign, Illustrator, After Effects, Audition, Premiere Pro, etc.<ul><li>Log in to see the apps available to you.</li><li>Install this software on up to 2 computers. (<a href="https://helpx.adobe.com/creative-cloud/help/download-install-app.html">Help</a>)</li></ul></td><td><a href="https://account.adobe.com/">account.adobe.com</a></td><td>${values.adobeemail}</td><td>${values.adobepw}</td>`
