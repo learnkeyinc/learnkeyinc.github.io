@@ -17,15 +17,15 @@ $("#submitinclusions").click(function() {
   });
 });
 
-$("#submitinformation").click(function() {
-  $("#requiredinfo input").each(async function() {
+$("#submitinformation").click(async function() {
+  await $("#requiredinfo input").each(async function() {
     let id = $(this).attr("id");
     let value = $(this).val();
     if (id.substr(-2) == "pw") {
       value = await getpw(value);
     }
     values[id] = value;
-  });
+  }).promise();
   console.log(values);
 });
 
