@@ -17,7 +17,7 @@ $("#submitinclusions").click(function() {
   });
 });
 
-$("#submitinformation").click(function() {
+$("#submitinformation").click(async function() {
   $("#requiredinfo input").each(async function() {
     let id = $(this).attr("id");
     let value = $(this).val();
