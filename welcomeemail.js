@@ -36,7 +36,6 @@ function addTemplate(id) {
 async function getpw(secret) {
   let expirationViews = $("#expirationviews").val();
   let expirationHours = $("#expirationhours").val();
-  let url;
   $.post("https://cors.bridged.cc/https://quickforget.com/secret/submit/", { 
     secret: secret, 
     expire_after_views: expirationViews, 
