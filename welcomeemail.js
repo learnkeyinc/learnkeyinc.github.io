@@ -43,10 +43,9 @@ async function getpw(secret) {
     expire_after: expirationHours
   }, 
     function (a,b,c) { 
-      url = c.getResponseHeader("x-final-url"); 
+      return c.getResponseHeader("x-final-url"); 
     }
   );
-  return url;
 }
 
 function getTemplate(key,subkey) {
