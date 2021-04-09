@@ -38,16 +38,15 @@ async function getpw(secret) {
   let expirationHours = $("#expirationhours").val();
   let url;
   let postResult = await $.post("https://cors.bridged.cc/https://quickforget.com/secret/submit/", 
-      { 
-        secret: secret, 
-        expire_after_views: expirationViews, 
-        expire_after: expirationHours
-      }, 
-      function (a,b,c) { 
-        url = c.getResponseHeader("x-final-url"); 
-      }
-    ).promise();
-  );
+    { 
+      secret: secret, 
+      expire_after_views: expirationViews, 
+      expire_after: expirationHours
+    }, 
+    function (a,b,c) { 
+      url = c.getResponseHeader("x-final-url"); 
+    }
+  ).promise();
   console.log(postResult,url);
   return url;
 }
