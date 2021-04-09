@@ -1,5 +1,5 @@
-let values = {
-};
+let values = {};
+
 $("#submitinclusions").click(function() {
   let included = [];
   $("#inclusions input:checkbox").each(function() {
