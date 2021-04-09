@@ -1,5 +1,3 @@
-const { url } = require("inspector");
-
 let values = {
 };
 $("#submitinclusions").click(function() {
