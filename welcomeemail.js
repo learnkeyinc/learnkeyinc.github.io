@@ -1,3 +1,5 @@
+const { url } = require("inspector");
+
 let values = {
 };
 $("#submitinclusions").click(function() {
@@ -17,12 +19,12 @@ $("#submitinclusions").click(function() {
   });
 });
 
-$("#submitinformation").click(async function() {
-  $("#requiredinfo input").each(async function() {
+$("#submitinformation").click(function() {
+  $("#requiredinfo input").each(function() {
     let id = $(this).attr("id");
     let value = $(this).val();
     if (id.substr(-2) == "pw") {
-      value = await getpw(value);
+      value = getpw(value);
     }
     values[id] = value;
   });
@@ -36,15 +38,21 @@ function addTemplate(id) {
 async function getpw(secret) {
   let expirationViews = $("#expirationviews").val();
   let expirationHours = $("#expirationhours").val();
-  $.post("https://cors.bridged.cc/https://quickforget.com/secret/submit/", { 
-    secret: secret, 
-    expire_after_views: expirationViews, 
-    expire_after: expirationHours
-  }, 
-    function (a,b,c) { 
-      return await c.getResponseHeader("x-final-url"); 
-    }
+  let url;
+  let postResult = await Promise.resolve(
+    $.post("https://cors.bridged.cc/https://quickforget.com/secret/submit/", 
+      { 
+        secret: secret, 
+        expire_after_views: expirationViews, 
+        expire_after: expirationHours
+      }, 
+      function (a,b,c) { 
+        url = c.getResponseHeader("x-final-url"); 
+      }
+    )
   );
+  console.log(postResult);
+  return url;
 }
 
 function getTemplate(key,subkey) {
