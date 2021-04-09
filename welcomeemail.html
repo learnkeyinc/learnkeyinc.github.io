@@ -24,25 +24,25 @@
         });
       });
 
-        function addTemplate(id) {
-          let templates = getTemplates();
-        }
+      function addTemplate(id) {
+        let templates = getTemplates();
+      }
 
-        async function getpw(secret) {
-          let expirationViews = $("#expirationviews").val();
-          let expirationHours = $("#expirationhours").val();
-          let url;
-          $.post("https://cors.bridged.cc/https://quickforget.com/secret/submit/", { 
-            secret: secret, 
-            expire_after_views: expirationViews, 
-            expire_after: expirationHours
-          }, 
-            function (a,b,c) { 
-              url = c.getResponseHeader("x-final-url"); 
-            }
-          );
-          return url;
-        }
+      async function getpw(secret) {
+        let expirationViews = $("#expirationviews").val();
+        let expirationHours = $("#expirationhours").val();
+        let url;
+        $.post("https://cors.bridged.cc/https://quickforget.com/secret/submit/", { 
+          secret: secret, 
+          expire_after_views: expirationViews, 
+          expire_after: expirationHours
+        }, 
+          function (a,b,c) { 
+            url = c.getResponseHeader("x-final-url"); 
+          }
+        );
+        return url;
+      }
 
       function getTemplate(key,subkey) {
         let templates = {
@@ -78,8 +78,6 @@
         };
         return templates[key][subkey];
       }
-
-      })
     </script>
   </head>
   <body>
