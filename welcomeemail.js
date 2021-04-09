@@ -11,22 +11,27 @@ $("#submitinclusions").click(function() {
     $.each(included,(i,v) => {
       let t = getTemplate(v,"required");
       $.each(t, (ti,tv) => {
-        $("#requiredinfo").append($(`<div class="col-xs-4"><label for="${tv[1]}">${tv[0]}</label><input id="${tv[1]}"></div>`));
+        $("#requiredinfo").append($(`<div class="col-xs-4"><label for="${tv[1]}">${tv[0]}</label><input id="${tv[1]}"><p id="${tv[1]}complete"></p></div>`));
       });     
     })
   });
 });
 
 $("#submitinformation").click(function() {
-  $("#requiredinfo input").each(async function() {
+  let populateValues = $("#requiredinfo input").each(async function() {
     let id = $(this).attr("id");
     let value = $(this).val();
     if (id.substr(-2) == "pw") {
       value = await getpw(value);
+      $(`#${id}complete`).html(value);
+
     }
     values[id] = value;
     console.log(values);
-  });  
+  });
+  $.when(populateValues).then(function() {
+    console.log(values);
+  });
 });
 
 function addTemplate(id) {
