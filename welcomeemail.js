@@ -11,7 +11,7 @@ $("#submitinclusions").click(function() {
     $.each(included,(i,v) => {
       let t = getTemplate(v,"required");
       $.each(t, (ti,tv) => {
-        $("#requiredinfo").append($(`<div class="col-xs-4"><label for="${tv[1]}">${tv[0]}</label><input id="${tv[1]}"><p id="${tv[1]}complete"></p></div>`));
+        $("#requiredinfo").append($(`<div class="col-xs-4"><label for="${tv[1]}">${tv[0]}</label><input id="${tv[1]}"><small id="${tv[1]}complete"></small></div>`));
       });     
     })
   });
@@ -24,10 +24,8 @@ $("#submitinformation").click(function() {
     if (id.substr(-2) == "pw") {
       value = await getpw(value);
       $(`#${id}complete`).html(value);
-
     }
     values[id] = value;
-    console.log(values);
   });
   $.when(populateValues).then(function() {
     console.log(values);
@@ -52,7 +50,6 @@ async function getpw(secret) {
       url = c.getResponseHeader("x-final-url"); 
     }
   );
-  console.log(postResult);
   return url;
 }
 
