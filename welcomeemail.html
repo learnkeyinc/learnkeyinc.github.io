@@ -10,8 +10,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script defer>
       let firstName,o365email,o365pw,voipextension,voippw,voicemailpw,adobeemail,adobepw
-      $("#submitinclusions").on("click", function() {
+      $("#submitinclusions").click(function() {
         $("#inclusions input:checkbox").each(function() {
+          console.log($(this));
           let c = $(this);
           if (c.is(":checked")) {
             included.push(c.attr("id"));
