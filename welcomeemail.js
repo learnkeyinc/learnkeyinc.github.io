@@ -9,7 +9,8 @@ $("#submitinclusions").click(function() {
       included.push(id);
     }
     $("#requiredinfo").empty();
-    $.each(included,(i,v) => {
+    let inclusions = ["welcome","intro",...included,"ending"];
+    $.each(inclusions,(i,v) => {
       let t = getTemplate(v,"required");
       $.each(t, (ti,tv) => {
         $("#requiredinfo").append($(`<div class="col-xs-4"><label for="${tv[1]}">${tv[0]}</label><input id="${tv[1]}"><small id="${tv[1]}complete"></small></div>`));
