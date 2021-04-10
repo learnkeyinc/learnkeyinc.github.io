@@ -22,7 +22,7 @@ $("#submitinclusions").click(function() {
 $("#submitinformation").click(function() {
   let promises = [];
   $("#requiredinfo input").each(function() {
-    promises.push(new Promise(async function() {    
+    promises.push(async function() {    
       let id = $(this).attr("id");
       let value = $(this).val();
       if (id.substr(-2) == "pw") {
@@ -30,7 +30,7 @@ $("#submitinformation").click(function() {
         $(`#${id}complete`).html(value);
       }
       values[id] = value;
-    }));
+    });
   });
   Promise.all(promises).then(function() {
     console.log(values);
