@@ -22,7 +22,13 @@ $("#submitinclusions").click(function() {
 $("#submitinformation").click(function() {
   let promises = [];
   $("#requiredinfo input").each(function() {
-    promises.push(populateField($(this).attr("id"),$(this).val()));
+    let id = $(this).attr("id");
+    let value = $(this).val();
+    if (id.substr(-2) == "pw") {
+      promises.push(getpw(id,value));
+    } else {
+      values[id] = value;
+    }
   });
   $.when.apply(this,promises).done(function() {
     console.log(values);
@@ -36,18 +42,10 @@ $("#submitinformation").click(function() {
   });
 });
 
-function populateField(id,value) {
-  if (id.substr(-2) == "pw") {
-    getpw(id,value);
-  } else {
-    values[id] = value;
-  }
-}
-
 function getpw(id,secret) {
   let expirationViews = $("#expirationviews").val();
   let expirationHours = $("#expirationhours").val();
-  $.post("https://cors.bridged.cc/https://quickforget.com/secret/submit/", 
+  return $.post("https://cors.bridged.cc/https://quickforget.com/secret/submit/", 
     { 
       secret: secret, 
       expire_after_views: expirationViews, 
