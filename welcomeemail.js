@@ -91,8 +91,8 @@ function getTemplate(key,subkey) {
       text: `<td>Bria softphone</td><td>Bria is a software that emulates a desk phone. We will collaborate with you to help you set up this software.</td><td></td><td></td><td></td>`
     },
     creativecloud: {
-      required: [["Adobe email address","adobeemail"],["Adobe password","adobepw"]],
-      text: `<td>Adobe Creative Cloud for Teams</td><td>Acrobat, Photoshop, Lightroom, InDesign, Illustrator, After Effects, Audition, Premiere Pro, etc.<ul><li>Log in to see the apps available to you.</li><li>Install this software on up to 2 computers. (<a href="https://helpx.adobe.com/creative-cloud/help/download-install-app.html">Help</a>)</li></ul></td><td><a href="https://account.adobe.com/">account.adobe.com</a></td><td>${values.adobeemail}</td><td><a href="${values.adobepw}">Password</a></td>`
+      required: [["Adobe email address","adobeemail"]],
+      text: `<td>Adobe Creative Cloud for Teams</td><td>Acrobat, Photoshop, Lightroom, InDesign, Illustrator, After Effects, Audition, Premiere Pro, etc.<ul><li>Log in to see the apps available to you.</li><li>Install this software on up to 2 computers. (<a href="https://helpx.adobe.com/creative-cloud/help/download-install-app.html">Help</a>)</li></ul></td><td><a href="https://account.adobe.com/">account.adobe.com</a></td><td>${values.adobeemail}</td><td>Follow the instructions in your email to set up an account and password.</td>`
     },
     ending: {
       required: [],
