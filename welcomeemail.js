@@ -22,17 +22,9 @@ $("#submitinclusions").click(function() {
 $("#submitinformation").click(function() {
   let promises = [];
   $("#requiredinfo input").each(function() {
-    promises.push(async function() {    
-      let id = $(this).attr("id");
-      let value = $(this).val();
-      if (id.substr(-2) == "pw") {
-        value = await getpw(value);
-        $(`#${id}complete`).html(value);
-      }
-      values[id] = value;
-    });
+    promises.push(populateField($(this).attr("id"),$(this).val()));
   });
-  Promise.all(promises).then(function() {
+  $.when.apply(this,promises).done(function() {
     console.log(values);
     let outputText = `<table width="100%" align="center" style="vertical-align:top; text-align:left; font-family:Calibri, sans-serif; font-size:11pt;"><tr>${getTemplate("intro","text")}</tr><tr>${getTemplate("warning","text")}</tr><tr><td colspan="2"><table width="100%" align="center" style="text-align:left;"><thead><td>Service</td><td>Description</td><td>Account URL</td><td>User name</td><td>Temporary password</td></thead>`;
     console.log(included);
@@ -44,25 +36,29 @@ $("#submitinformation").click(function() {
   });
 });
 
-function addTemplate(id) {
-  let templates = getTemplates();
+function populateField(id,value) {
+  if (id.substr(-2) == "pw") {
+    getpw(id,value);
+  } else {
+    values[id] = value;
+  }
 }
 
-async function getpw(secret) {
+function getpw(id,secret) {
   let expirationViews = $("#expirationviews").val();
   let expirationHours = $("#expirationhours").val();
-  let url;
-  let postResult = await $.post("https://cors.bridged.cc/https://quickforget.com/secret/submit/", 
+  $.post("https://cors.bridged.cc/https://quickforget.com/secret/submit/", 
     { 
       secret: secret, 
       expire_after_views: expirationViews, 
       expire_after: expirationHours
     }, 
-    function (a,b,c) { 
-      url = c.getResponseHeader("x-final-url"); 
+    function (a,b,c) {
+      let value = c.getResponseHeader("x-final-url")
+      values[id] = value;
+      $(`#${id}complete`).html(value);
     }
   );
-  return url;
 }
 
 function getTemplate(key,subkey) {
