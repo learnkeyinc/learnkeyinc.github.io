@@ -92,7 +92,7 @@ function getTemplate(key,subkey) {
     },
     creativecloud: {
       required: [["Adobe email address","adobeemail"],["Adobe password","adobepw"]],
-      text: `<td>Adobe Creative Cloud for Teams</td><td>Acrobat, Photoshop, Lightroom, InDesign, Illustrator, After Effects, Audition, Premiere Pro, etc.<ul><li>Log in to see the apps available to you.</li><li>Install this software on up to 2 computers. (<a href="https://helpx.adobe.com/creative-cloud/help/download-install-app.html">Help</a>)</li></ul></td><td><a href="https://account.adobe.com/">account.adobe.com</a></td><td>${values.adobeemail}</td><td>${values.adobepw}</td>`
+      text: `<td>Adobe Creative Cloud for Teams</td><td>Acrobat, Photoshop, Lightroom, InDesign, Illustrator, After Effects, Audition, Premiere Pro, etc.<ul><li>Log in to see the apps available to you.</li><li>Install this software on up to 2 computers. (<a href="https://helpx.adobe.com/creative-cloud/help/download-install-app.html">Help</a>)</li></ul></td><td><a href="https://account.adobe.com/">account.adobe.com</a></td><td>${values.adobeemail}</td><td><a href="${values.adobepw}">Password</a></td>`
     },
     ending: {
       required: [],
