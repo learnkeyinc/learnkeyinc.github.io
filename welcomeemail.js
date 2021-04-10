@@ -96,7 +96,7 @@ function getTemplate(key,subkey) {
     },
     sis: {
       required: [["SIS email address","sisemail"],["SIS password","sispw"]],
-      text: `<td><p>LearnKey's student information system (SIS)</td><td>LearnKey's SIS is the platform with which we keep track of our students and their progress.</p><p>Some of the data stored in this system is sensitive. As a LearnKey employee, you will be under obligation to never disclose the information therein without express permission.</p></td><td><a href="https://portal.optimumhq.com/">portal.optimumhq.com</a></td><td>${sisemail}</td><td><a href="${sispw}">Password</td>`
+      text: `<td><p>LearnKey's student information system (SIS)</td><td>LearnKey's SIS is the platform with which we keep track of our students and their progress.</p><p>Some of the data stored in this system is sensitive. As a LearnKey employee, you will be under obligation to never disclose the information therein without express permission.</p></td><td><a href="https://portal.optimumhq.com/">portal.optimumhq.com</a></td><td>${values.sisemail}</td><td><a href="${values.sispw}">Password</td>`
     },
     ending: {
       required: [],
