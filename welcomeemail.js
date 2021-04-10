@@ -94,6 +94,10 @@ function getTemplate(key,subkey) {
       required: [["Adobe email address","adobeemail"]],
       text: `<td>Adobe Creative Cloud for Teams</td><td>Acrobat, Photoshop, Lightroom, InDesign, Illustrator, After Effects, Audition, Premiere Pro, etc.<ul><li>Log in to see the apps available to you.</li><li>Install this software on up to 2 computers. (<a href="https://helpx.adobe.com/creative-cloud/help/download-install-app.html">Help</a>)</li></ul></td><td><a href="https://account.adobe.com/">account.adobe.com</a></td><td>${values.adobeemail}</td><td>Follow the instructions in your email to set up an account and password.</td>`
     },
+    sis: {
+      required: [["SIS email address","sisemail"],["SIS password","sispw"]],
+      text: `<td><p>LearnKey's student information system (SIS)</td><td>LearnKey's SIS is the platform with which we keep track of our students and their progress.</p><p>Some of the data stored in this system is sensitive. As a LearnKey employee, you will be under obligation to never disclose the information therein without express permission.</p></td><td><a href="https://portal.optimumhq.com/">portal.optimumhq.com</a></td><td>${sisemail}</td><td><a href="${sispw}">Password</td>`
+    },
     ending: {
       required: [],
       text: `<td colspan="2"><p>The tech support team is here to serve you. If you have any questions, please email me directly or send an email to <a href="mailto:techsupport@learnkey.com">techsupport@learnkey.com</a>. We are also available on the phone at extension 293 or (800)&nbsp;482&#8209;8244.</p><p>I wish you the best as you begin your journey with LearnKey!</p></td>`
