@@ -20,16 +20,19 @@ $("#submitinclusions").click(function() {
 });
 
 $("#submitinformation").click(function() {
-  let populateValues = $("#requiredinfo input").each(async function() {
-    let id = $(this).attr("id");
-    let value = $(this).val();
-    if (id.substr(-2) == "pw") {
-      value = await getpw(value);
-      $(`#${id}complete`).html(value);
-    }
-    values[id] = value;
+  let promises = [];
+  $("#requiredinfo input").each(function() {
+    promises.push(new Promise(async function() {    
+      let id = $(this).attr("id");
+      let value = $(this).val();
+      if (id.substr(-2) == "pw") {
+        value = await getpw(value);
+        $(`#${id}complete`).html(value);
+      }
+      values[id] = value;
+    }));
   });
-  $.when(populateValues).then(function() {
+  Promise.all(promises).then(function() {
     console.log(values);
     let outputText = `<table width="100%" align="center" style="vertical-align:top; text-align:left; font-family:Calibri, sans-serif; font-size:11pt;"><tr>${getTemplate("intro","text")}</tr><tr>${getTemplate("warning","text")}</tr><tr><td colspan="2"><table width="100%" align="center" style="text-align:left;"><thead><td>Service</td><td>Description</td><td>Account URL</td><td>User name</td><td>Temporary password</td></thead>`;
     console.log(included);
