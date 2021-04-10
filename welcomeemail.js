@@ -9,7 +9,7 @@ $("#submitinclusions").click(function() {
       included.push(id);
     }
     $("#requiredinfo").empty();
-    let inclusions = ["welcome","warning",...included,"ending"];
+    let inclusions = ["intro","warning",...included,"ending"];
     $.each(inclusions,(i,v) => {
       let t = getTemplate(v,"required");
       $.each(t, (ti,tv) => {
